@@ -31,3 +31,11 @@ body {
     text-wrap: balance;
   }
 }
+
+.title-shadow {
+  text-shadow:0px 0px 10px #ff9800 ;
+}
+
+.orange-shadow {
+  box-shadow:  0 0 400px rgba(255, 152 , 0, 0.25) ;
+}
