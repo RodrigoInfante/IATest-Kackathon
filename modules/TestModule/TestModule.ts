@@ -4,9 +4,14 @@ export class TestModule {
 		const formData = new FormData()
 		formData.set("file", file)
 		try{
-			const response = await fetch("http://localhost:3000/api/test", {
-				method: "post",
-				body: formData })
+			const response = await fetch(process.env.NODE_ENV==="production"?
+				`${process.env.NEXT_PUBLIC_URL_API}`:
+				`http://${window.location.host}/api/test`
+				, 
+				{
+					method: "post",
+					body: formData 
+				})
 			if (response.ok) {
 				return {ok: true, ...await response.json() } as TestRequest
 			} else {
