@@ -8,6 +8,6 @@ export const PlaceholderDefault = () => {
 			<span className="text-[25px] font-bold text-[#ada3a3]">&</span>
 			<WordIcon />			
 		</div>
-		<p>Arrastre Archivos .doc, .docx, .pdf</p>
+		<p><span className="hidden lg:block">Arrastre o</span>Seleccione Archivos .doc, .docx, .pdf</p>
 	</Placeholder>
 }

@@ -12,7 +12,7 @@ export const Test = () => {
 	const {currentTest,nextTest,position,previousTest, currentIndex}= useTest(tests)
 	const [validate, setValidate]=useState(false)
 	return (
-		<div className="flex flex-col w-[550px] drop-shadow-2xl shadow-white  border-gray-300 border rounded-[30px]">
+		<div className="flex flex-col w-full md:w-[550px] drop-shadow-2xl shadow-white  border-gray-300 border rounded-[30px]">
 			<TestHeader 
 				about={currentTest.about} 
 				hasNextTest={position}
