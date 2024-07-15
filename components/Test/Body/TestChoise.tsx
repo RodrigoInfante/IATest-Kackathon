@@ -1,6 +1,5 @@
 "use client"
 import { Choise } from "@/types/shemaTest"
-import { useEffect, useState } from "react"
 import { CheckBoxChecked } from "@/components/Icon/CheckBox/CheckBoxChecked"
 import { CheckBoxEmpty } from "@/components/Icon/CheckBox/CheckBoxEmpty"
 type Props={
@@ -10,10 +9,7 @@ type Props={
 }
 export function TestChoise({choise ,revelate,onToggleChoise}:Props) {
     const {correct,selected,text} = choise
-    // const [check, setCheck]= useState(selected)
-    // useEffect(()=>{
-    //     setCheck(selected)
-    // },[selected])
+
     const styleRevelate={
         correct: "bg-green-400",
         incorrect: "bg-red-400",
@@ -24,7 +20,6 @@ export function TestChoise({choise ,revelate,onToggleChoise}:Props) {
                 ${revelate && styleRevelate[correct===selected?"correct":"incorrect"]}`} 
             onClick={()=> {
                 onToggleChoise()
-                // setCheck(!check)
             }}>
             
             <input type="checkbox" className="hidden" value={`${selected}`} />
