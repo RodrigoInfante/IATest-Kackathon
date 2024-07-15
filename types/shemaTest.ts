@@ -9,3 +9,15 @@ export type Choise={
     correct:boolean,
     selected: boolean
 }
+export type TestRequest ={
+    ok: true,
+    schema: {
+        object:{
+            tests: TestList
+        }
+    } 
+}
+export type TestRequestError={
+    ok: false,
+    error: string
+}

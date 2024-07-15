@@ -24,7 +24,7 @@ export const DropZone = () => {
 		setPlaceholder(placeholders.check)
 		const schemaTest = await TestModule.getShemaTest({ file: acceptedFiles[0] })
 		const searchParams= new URLSearchParams()
-		if (schemaTest.error) {
+		if (!schemaTest.ok) {
 			setPlaceholder(placeholders.badRequest(schemaTest.error))
 			acceptedFiles.pop()
 		}else{

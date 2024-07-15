@@ -1,33 +1,23 @@
-import { TestList } from "@/types/shemaTest"
+import { TestRequest, TestRequestError } from "@/types/shemaTest"
 export class TestModule {
-	static async getShemaTest({ file }: { file: File }) {
+	static async getShemaTest({ file }: { file: File }) :  Promise<TestRequest | TestRequestError> {
 		const formData = new FormData()
 		formData.set("file", file)
-		let shemaResponse: { schema: {
-			object:{
-				tests: TestList
-			}
-		} } | { error: string } = {error: "Unknow error"}
-		await fetch("http://localhost:3000/api/test", {
-			method: "post",
-			body: formData
-		}).then(async (response) => {
+		try{
+			const response = await fetch("http://localhost:3000/api/test", {
+				method: "post",
+				body: formData })
 			if (response.ok) {
-				shemaResponse = await response.json()
+				return {ok: true, ...await response.json() } as TestRequest
 			} else {
-				throw new Error(`Status: ${response.status} in request`)
+				return {ok:false, error: `Status: ${response.status} in request`}
 			}
-		}).catch((err) => {
+		}catch(err: unknown){
 			if (err instanceof Error) {
-				shemaResponse= {error:err.message}
+				return {ok:false,error:err.message}
 			}
 			console.error(err)
-			shemaResponse = shemaResponse= {error:"Error desconocido durante la Generación"}
-		})
-		return shemaResponse as { schema: {
-			object:{
-				tests: TestList
-			}
-		} } | { error: string }
+			return  {ok:false, error:"Error desconocido durante la Generación"}
+		}
 	}
 }
