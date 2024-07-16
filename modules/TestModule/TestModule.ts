@@ -1,8 +1,9 @@
 import { TestRequest, TestRequestError } from "@/types/shemaTest"
 export class TestModule {
-	static async getShemaTest({ file }: { file: File }) :  Promise<TestRequest | TestRequestError> {
+	static async getShemaTest({ file,apikey }: { file: File, apikey:string }) :  Promise<TestRequest | TestRequestError> {
 		const formData = new FormData()
 		formData.set("file", file)
+		formData.set("apikey", apikey)
 		try{
 			const response = await fetch(process.env.NODE_ENV==="production"?
 				`${process.env.NEXT_PUBLIC_URL_API}`:
