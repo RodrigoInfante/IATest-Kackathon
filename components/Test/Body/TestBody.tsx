@@ -27,7 +27,7 @@ export const TestBody = ({test:{about,choises },validate,indexTest}:Props)=>{
         setTests(testsUpdated)
     }
     return (
-        <div className="flex flex-col gap-3 px-5 py-3">
+        <div className="flex flex-col gap-3 px-5 py-3  h-[420px] lg:h-[380px] overflow-y-auto pt-5">
             <TestBodyAbout>{about}</TestBodyAbout>
             {choises.map((choise, index)=>{
                 return(

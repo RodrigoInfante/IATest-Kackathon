@@ -16,7 +16,7 @@ export const Nav =()=>{
         }
     },[])
     return (
-        <nav className={`fixed w-full flex justify-between lg:justify-center pl-4 py-2 lg:px-3 gap-2
+        <nav className={`fixed w-full z-50 flex justify-between lg:justify-center pl-4 py-2 lg:px-3 gap-2
                 ${onTop? "bg-transparent":"bg-black"}
             `}>
             <div className="flex gap-2 ">

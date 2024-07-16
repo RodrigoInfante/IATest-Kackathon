@@ -11,6 +11,8 @@ export default function useTest(tests: TestWithSelect[]){
         if(indexTest >= tests.length -1)newPosition= 1
         setPosition(newPosition)
     },[indexTest, tests])
+
+    useEffect(()=>{setTest(tests[indexTest])},[indexTest,tests])
     
     function nextTest(){
         let nextIndex = indexTest >= tests.length -1? tests.length -1 : indexTest +1  
@@ -22,6 +24,9 @@ export default function useTest(tests: TestWithSelect[]){
         setIndex(nextIndex)
         setTest(tests[nextIndex])
     }
-    return {currentTest, nextTest, previousTest, position, currentIndex: indexTest}
+    function toIndex (index:number){
+        setIndex(index)
+    }
+    return {currentTest, nextTest, previousTest, position, currentIndex: indexTest, toIndex}
     
 }
