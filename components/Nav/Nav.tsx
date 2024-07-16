@@ -5,7 +5,7 @@ import { PrimaryLink } from "../Links/PrimaryLink"
 import { Button } from "../Buttons/Button"
 import { useEffect, useState } from "react"
 export const Nav =()=>{
-    const[onTop, setOnTop]=useState(!(window.scrollY>10))
+    const[onTop, setOnTop]=useState(true)
     useEffect(()=>{
         function hanlderScroll(){
             setOnTop(!(window.scrollY>10))
