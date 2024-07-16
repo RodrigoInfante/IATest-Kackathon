@@ -5,26 +5,26 @@ import { PrimaryLink } from "../Links/PrimaryLink"
 import { Button } from "../Buttons/Button"
 import { useEffect, useState } from "react"
 export const Nav =()=>{
-    const[onTop, setOnTop]=useState(true)
+    const[onTop, setOnTop]=useState(!(window.scrollY>10))
     useEffect(()=>{
         function hanlderScroll(){
-            setOnTop(!(window.scrollY>50))
+            setOnTop(!(window.scrollY>10))
         }
-        document.body.addEventListener("scroll",hanlderScroll)
+        document.addEventListener("scroll",hanlderScroll)
         return ()=>{
-            document.body.removeEventListener("scroll", hanlderScroll)
+            document.removeEventListener("scroll", hanlderScroll)
         }
     },[])
     return (
-        <nav className={`fixed w-full flex justify-center bg-black py-2 px-3 gap-2
-                ${onTop? "lg:bg-transparent":"lg:bg-black"}
+        <nav className={`fixed w-full flex justify-between lg:justify-center pl-4 py-2 lg:px-3 gap-2
+                ${onTop? "bg-transparent":"bg-black"}
             `}>
-            <div className="flex gap-2">
-                <PrimaryLink href="/guia">Guía</PrimaryLink>
-                <LinkGitHub/>
+            <div className="flex gap-2 ">
+                <PrimaryLink className="underline lg:decoration-transparent" href="/guia">Guía</PrimaryLink>
+                <LinkGitHub className="hidden lg:block"/>
             </div>
-            <div className="absolute right-0 px-3 flex gap-2 content-end">
-                <Button className="hover:underline font-semibold text-lg py-2 px-3" handlerClick={()=>{}}>Registrarse</Button>
+            <div className="lg:absolute right-0 px-3 flex gap-2 content-end">
+                <Button className="hover:underline font-semibold lg:text-lg py-1 lg:py-2 px-2 lg:px-3" handlerClick={()=>{}}>Registrarse</Button>
                 <SecondaryButton handlerClick={()=>{}}>Iniciar Sesión</SecondaryButton>
             </div>
             

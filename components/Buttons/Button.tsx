@@ -3,9 +3,9 @@ import { ReactNode } from "react"
 
 type Props={
     children: ReactNode,
-    handlerClick: ()=>void,
+    handlerClick?: ()=>void,
     className?: string
 }
 export const Button =({children,handlerClick,className}: Props)=>{
-    return <button className={className} onClick={()=> handlerClick()}>{children}</button>
+    return <button className={className} onClick={()=>handlerClick && handlerClick()}>{children}</button>
 }

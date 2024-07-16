@@ -7,7 +7,7 @@ type Props ={
 }
 export const PrimaryLink =({children,href,className}:Props)=>{
     return(
-        <Link href={href} className={"font-semibold hover:underline text-white text-lg py-2 px-3 " + className}> 
+        <Link href={href} className={"font-semibold hover:underline text-white lg:text-lg py-1 lg:py-2 px-2 lg:px-3 " + className}> 
             {children}
         </Link>
     )

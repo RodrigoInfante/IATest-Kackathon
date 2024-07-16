@@ -1,7 +1,10 @@
 import { PrimaryLink } from "./PrimaryLink";
-export const LinkGitHub =()=>{
+type Props ={
+    className?:string
+}
+export const LinkGitHub =({className}:Props)=>{
     return(
-        <PrimaryLink href={"https://github.com/RodrigoInfante/IATest-Kackathon"} > 
+        <PrimaryLink className={className} href={"https://github.com/RodrigoInfante/IATest-Kackathon"} > 
             GitHub
         </PrimaryLink>
     )
