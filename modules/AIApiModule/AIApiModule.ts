@@ -2,7 +2,7 @@ import { createOpenAI } from "@ai-sdk/openai";
 import { generateObject } from "ai";
 import * as z from 'zod';
 export class AIApiModule {
-	static async generateTestSchema({ text }: { text: string }) {
+	static async generateTestSchema({ text ,apikey}: { text: string, apikey:string }) {
 		const schemaPromp = z.object({
 			tests: z.array(
 				z.object({
@@ -16,7 +16,7 @@ export class AIApiModule {
 		})
 		const groq = createOpenAI({
 			baseURL: "https://api.groq.com/openai/v1",
-			apiKey: process.env.GROQ_API_KEY
+			apiKey: apikey
 		})
 		const response = await generateObject({
 			model: groq("mixtral-8x7b-32768"),
