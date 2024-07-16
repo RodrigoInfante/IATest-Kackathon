@@ -6,5 +6,6 @@ export const PlaceholderBadRequest = ({ children }: { children?: ReactNode }) =>
 		
 		<ErrorRequestIcon />				
 		<p className="text-[#cb2525] text-center font-medium">{children}</p>
+		<p className="text-[#cb2525] text-center font-medium underline">Intente nuevamente más tarde</p>
 	</Placeholder>
 }
