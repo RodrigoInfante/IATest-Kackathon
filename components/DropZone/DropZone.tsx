@@ -8,7 +8,6 @@ import { PlaceholderDefault } from "../Placeholder/PlaceholderDefault"
 import { PlaceholderEnter } from "../Placeholder/PlaceholderEnter"
 import { PlaceholderError } from "../Placeholder/PlaceholderError"
 import { useRouter } from "next/navigation"
-import { TestList } from "@/types/shemaTest"
 
 export const DropZone = () => {
 	const {push}=useRouter()
@@ -54,7 +53,7 @@ export const DropZone = () => {
 
 	})
 	return (
-		<div {...getRootProps()} className="w-[300px] h-72 border orange-shadow border-gray-400 rounded-[30px] justify-center items-center">
+		<div {...getRootProps()} className="w-[300px] h-72  orange-shadow hover:bg-gray-900 rounded-[30px] justify-center items-center">
 			<input {...getInputProps()} />
 			{placeholder}
 		</div>
