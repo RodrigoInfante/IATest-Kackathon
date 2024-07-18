@@ -19,8 +19,9 @@ export const Nav =()=>{
         <nav className={`fixed w-full z-50 flex justify-between lg:justify-center pl-4 py-2 lg:px-3 gap-2
                 ${onTop? "bg-transparent":"bg-black"}
             `}>
-            <div className="flex gap-2 ">
-                <PrimaryLink className="underline lg:decoration-transparent hover:lg:decoration-white " href="/guia">Guía</PrimaryLink>
+            <div className="flex gap-2 flex-row-reverse lg:flex-row">
+                <PrimaryLink className="underline lg:decoration-transparent hover:lg:decoration-white" href="/guia">Guía</PrimaryLink>
+                <PrimaryLink className="underline lg:decoration-transparent hover:lg:decoration-white" href="/">Home</PrimaryLink>
                 <LinkGitHub className="hidden lg:block"/>
             </div>
             <div className="lg:absolute right-0 px-3 flex gap-2 content-end">
