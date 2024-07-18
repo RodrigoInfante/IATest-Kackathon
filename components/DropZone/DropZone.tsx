@@ -1,6 +1,6 @@
 "use client"
 import { TestModule } from "@/modules/TestModule/TestModule"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useDropzone } from "react-dropzone"
 import { PlaceholderBadRequest } from "../Placeholder/PlaceholderBadRequest"
 import { PlaceholderCheck } from "../Placeholder/PlaceholderCheck"
@@ -11,9 +11,12 @@ import { PlaceholderApiKeyRequire } from "../Placeholder/PlaceholderApiKeyRequir
 import { useRouter } from "next/navigation"
 import { ApiKeyInput } from "../Inputs/ApiKeyInput"
 import { usePathname } from "next/navigation"
+import { useTestContext } from "@/context/TestContext"
+import { addPropsClientUi } from "@/libs/format"
 export const DropZone = () => {
 	const {push}=useRouter()
 	const path =usePathname()
+	const {setTests, setContent,setApiKey, apikey} = useTestContext()
 	const placeholders = {
 		default: PlaceholderDefault,
 		enter: PlaceholderEnter,
@@ -23,24 +26,24 @@ export const DropZone = () => {
 		badRequest: (text: string) => <PlaceholderBadRequest >{text}</PlaceholderBadRequest>
 	}
 	const [placeholder, setPlaceholder] = useState(placeholders.default)
-	const [apiKey, setApiKey]= useState("")
 	
 	const onDropAccepted = async (acceptedFiles: File[]) => {
 		
-		if(apiKey === ""){ 
+		if(apikey === ""){ 
 			push(path+"#apikey")
 			return setPlaceholder(placeholders.apikeyMissing)
 		}
 		
 		setPlaceholder(placeholders.check)
-		const schemaTest = await TestModule.getShemaTest({ file: acceptedFiles[0] ,apikey: apiKey})
+		const schemaTest = await TestModule.getShemaTest({ file: acceptedFiles[0] ,apikey: apikey})
 		const searchParams= new URLSearchParams()
-		
+		console.log(schemaTest)
 		if (!schemaTest.ok) {
 			setPlaceholder(placeholders.badRequest(schemaTest.error))
 			acceptedFiles.pop()
 		}else{
-			searchParams.set("tests", JSON.stringify(schemaTest.schema?.object?.tests))
+			setTests(addPropsClientUi(schemaTest.schema.object.tests))
+			setContent(schemaTest.content)
 			push(`/test?${searchParams.toString()}`)
 		}
 		
@@ -77,7 +80,7 @@ export const DropZone = () => {
 				<input {...getInputProps()} />
 				{placeholder}
 			</div>
-			<ApiKeyInput id="apikey" value={apiKey} handlerChange={handlerChange}/>
+			<ApiKeyInput id="apikey" value={apikey} handlerChange={handlerChange}/>
 		</div>
 		
 	)
