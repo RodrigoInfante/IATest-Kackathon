@@ -17,7 +17,8 @@ export async function POST(req: NextRequest) {
 
 		const schema = await AIApiModule.generateTestSchema({ text: data.value, apikey })
 		return NextResponse.json({
-			schema: schema
+			schema: schema,
+			content: data.value.replace(/\n{2,}/g, '\n').replace(/\n/g, '<br/>')
 		});
 		
 		
