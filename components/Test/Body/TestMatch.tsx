@@ -1,11 +1,11 @@
 "use client"
-import { TestWithSelect } from "@/types/contextTypes"
 import { useCallback } from "react"
+import { Match } from "@/types/shemaTest"
 type Props ={
-    match: Pick<TestWithSelect, "match">
+    matchs: Match[]
 }
-export const TestMatch =({match}:Props)=>{
-    const {match : items}= match
+export const TestMatch =({matchs}:Props)=>{
+    
     const handlerSelect = useCallback((index: number, columnA: boolean)=>{
 
     },[])
@@ -14,8 +14,21 @@ export const TestMatch =({match}:Props)=>{
         <div className="px-3 py-2">
             <p>Enlaza los elementos de la columna A con el elemento que se relaciona de la columna B</p>
             <div className="flex justify-between">
-                <div>
-                    {items.map(({columnA:{content,selected},correct}, ind)=>(
+                <div className="flex flex-col gap-2">
+                    {matchs.map(({columnA:{content,selected}, correct}, ind)=>(
+                        <ColumnItem
+                            columnA
+                            key={`${content}-${ind}`}
+                            index={ind}
+                            text={content}
+                            onSelect={handlerSelect}
+                            select={selected}
+                            correct={correct}
+                        />
+                    ))}
+                </div>
+                <div className="flex flex-col gap-2">
+                    {matchs.map(({columnB:{content,selected}, correct}, ind)=>(
                         <ColumnItem
                             columnA
                             key={`${content}-${ind}`}
