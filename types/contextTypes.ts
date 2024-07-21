@@ -9,7 +9,7 @@ export type TestContextType ={
     setApiKey:(apikey:string)=> void,
     actions: Actions
 }
-export type TestWithSelect =Omit<Test, "choises" | "question" | "complete" | "macth"> & {
+export type TestWithSelect =Omit<Test, "choises" | "question" | "complete" | "match"> & {
     choises: Choise[],
     question:Question,
     complete:Complete,
