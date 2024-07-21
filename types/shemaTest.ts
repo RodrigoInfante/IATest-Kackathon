@@ -4,7 +4,10 @@ export type Test={
     about:string,
     choises: Choise[],
     question: string,
-    match: Match[],
+    match: {
+        columnA:string, 
+        columnB:string
+    }[],
     complete: string[]
 }
 export type Choise={
