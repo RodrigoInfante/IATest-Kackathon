@@ -27,5 +27,6 @@ export const emptyTestContext: TestContextType ={
     setApiKey: (apikey:string)=>{},
     actions: {
         selectChoise(payload) {},
+        setResponseOfQuestion(payload) {}
     }
 }
