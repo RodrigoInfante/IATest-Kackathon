@@ -1,43 +1,42 @@
 "use client"
-import { createContext , ReactNode, useContext, useState} from "react";
+import { createContext , ReactNode, useContext, useState, useReducer} from "react";
 import { TestContextType, TestWithSelect } from "@/types/contextTypes";
-const TestContext = createContext<TestContextType>({
-    tests:[{
-        about: "",
-        choises: [{correct:false, text:"", selected: false}],
-        complete: [{response:"",sentence:""}],
-        match:[{columnA:"",columnB:""}],
-        question:{response:"",sentence:""}
-    }],
-    setTests: (tests: TestWithSelect[])=>tests ,
-    content: "",
-    setContent : (content)=>{},
-    apikey:"",
-    setApiKey: (apikey:string)=>{}
-})
+import { emptyTestContext } from "@/constants/emptyTestContext";
+import { testReducer } from "./reducer/testReducer";
+import { PayloadAction, PayloadChoises, PayloadQuestion } from "@/types/reducerType";
+const TestContext = createContext<TestContextType >(emptyTestContext)
 export function useTestContext (){
     return useContext(TestContext)
 }
 
 export const TestProvider=({children}:{ children:ReactNode})=>{
-    const [testList, setTestList]= useState([{
-        about: "",
-        choises: [{correct:false, text:"", selected: false}],
-        complete: [{response:"",sentence:""}],
-        match:[{columnA:"",columnB:""}],
-        question:{response:"",sentence:""}
-    }])
-    const [content , setContent]= useState("")
-    const [apikey , setApiKey]= useState("")
+    const [stateTest, dispatch]=useReducer( testReducer , emptyTestContext.tests)
+    const [content , setContent]= useState(emptyTestContext.content)
+    const [apikey , setApiKey]= useState(emptyTestContext.apikey)
+    
+    const setTests=(tests:TestWithSelect[])=>{
+        dispatch({type:"init-state", payload:tests})
+    }
+    const selectChoise =(payload:PayloadAction  & {data: PayloadChoises})=>{
+        dispatch({type: "choises-select-choise", payload})
+    }
+    const setResponseOfQuestion =(payload:PayloadAction  & {data: PayloadQuestion})=>{
+        dispatch({type: "question-update-response", payload})
+    }
+    const actions ={
+        selectChoise,
+        setResponseOfQuestion
+    }
     return <TestContext.Provider 
         value={
             {
-                tests:testList, 
-                setTests:(newTests:TestWithSelect[])=> {console.log(newTests);setTestList(newTests)},
+                tests:stateTest, 
+                setTests,
                 content,
                 setContent,
                 apikey,
-                setApiKey
+                setApiKey,
+                actions
             }
         }>
         {children}

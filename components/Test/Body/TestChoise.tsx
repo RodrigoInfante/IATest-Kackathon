@@ -9,7 +9,6 @@ type Props={
 }
 export function TestChoise({choise ,revelate,onToggleChoise}:Props) {
     const {correct,selected,text} = choise
-
     const styleRevelate={
         correct: "bg-green-400",
         incorrect: "bg-red-400",

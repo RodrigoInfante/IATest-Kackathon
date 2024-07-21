@@ -25,6 +25,11 @@ export type TestRequestError={
     error: string
 }
 export type Match ={
-    columnA:string,
-    columnB:string,
+    columnA:MathItem,
+    columnB:MathItem,
+    correct: boolean | null
+}
+export type MathItem={
+    content:string, 
+    selected: boolean
 }

@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { TestWithSelect } from "@/types/contextTypes";
+import { TypeTest } from "@/constants/typeTest";
+import { useMemo } from "react";
 export default function useTest(tests: TestWithSelect[]){
     const [indexTest, setIndex]= useState(0)
     const [currentTest, setTest]= useState(tests[indexTest])
     const [position, setPosition]= useState<-1| 0| 1>(-1)
-    
+    const [typeTest, setTypeTest]=useState<TypeTest>(TypeTest.CHOISE)
+    const typeTestList = useMemo(()=>(Object.values(TypeTest)),[])
     useEffect(()=>{
         let newPosition: -1|0| 1 = -1
         if(indexTest > 0)newPosition=0
@@ -27,6 +30,9 @@ export default function useTest(tests: TestWithSelect[]){
     function toIndex (index:number){
         setIndex(index)
     }
-    return {currentTest, nextTest, previousTest, position, currentIndex: indexTest, toIndex}
+    function changeType(type: TypeTest){
+        setTypeTest(type)
+    }
+    return {currentTest, nextTest, previousTest, position, currentIndex: indexTest, toIndex, typeTest, changeType, typeTestList}
     
 }

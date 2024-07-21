@@ -10,16 +10,26 @@ import { useState } from "react"
 import { formatedPropTools } from "@/libs/formatedPropTools"
 import { Document } from "../Document/Document"
 import { Chat } from "../Chat/Chat"
+import { TypeTest } from "@/constants/typeTest"
 export const Test = () => {
-	const {tests, content, apikey}=useTestContext()
-	const {currentTest,nextTest,position,previousTest, currentIndex, toIndex}= useTest(tests)
+	const {tests, content, apikey}=useTestContext() 
+	const {
+		currentTest,
+		nextTest,
+		position,
+		previousTest, 
+		currentIndex, 
+		toIndex,
+		changeType,
+		typeTest,
+		typeTestList
+	}= useTest(tests)
 	const [validate, setValidate]=useState(false)
-	console.log(content)
 	
 	return (
 		<div className="flex flex-col gap-1">
 			<div className="relative flex h-[500px] bg-gray-950">
-				<SelectMode currentType="marcar las correctas " selectType={()=>{}} types={["marcar la correcta"]}></SelectMode>
+				<SelectMode currentType={typeTest} selectType={changeType} types={typeTestList}></SelectMode>
 				<div className="relative z-20 flex flex-col w-full shadow shadow-black bg-gray-900 lg:w-[60%] drop-shadow-2xl   border-gray-300 ">
 					<TestHeader 
 						about={currentTest.about} 
@@ -27,7 +37,7 @@ export const Test = () => {
 						nextTest={nextTest}
 						previousTest={previousTest}
 					/>
-					<TestBody indexTest={currentIndex} test={tests[currentIndex]} validate={validate}/>
+					<TestBody typeTest={typeTest} indexTest={currentIndex} test={tests[currentIndex]} validate={validate}/>
 					<TestFooter
 						currentIndex={currentIndex}
 						lastTest={currentIndex===tests.length-1}
