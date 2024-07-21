@@ -37,10 +37,10 @@ export type ActionsMacthReducer =
 }
 
 export type ActionMatchType = 
-    "macth-select-choise" | 
-    "macth-unselec-choise"
+    "match-select-choise-columnA" | 
+    "match-selec-choise-columnB"
 
-export type PayloadMacth={index: number, columnA: boolean}
+export type PayloadMacth={index: number}
 //Action of Choises
 export type ActionsChoisesReducer =
 {
@@ -68,5 +68,7 @@ export const enum ActionRoutes{
 export type Actions={
     //choises
     selectChoise: (payload: PayloadAction & {data: PayloadChoises})=> void,
-    setResponseOfQuestion:(payload: PayloadAction & {data: PayloadQuestion})=> void
+    setResponseOfQuestion:(payload: PayloadAction & {data: PayloadQuestion})=> void,
+    selectMatchColumnA: (payload: PayloadAction & {data: PayloadMacth})=> void,
+    selectMatchColumnB: (payload: PayloadAction & {data: PayloadMacth})=> void,
 }

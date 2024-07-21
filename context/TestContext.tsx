@@ -3,7 +3,7 @@ import { createContext , ReactNode, useContext, useState, useReducer} from "reac
 import { TestContextType, TestWithSelect } from "@/types/contextTypes";
 import { emptyTestContext } from "@/constants/emptyTestContext";
 import { testReducer } from "./reducer/testReducer";
-import { PayloadAction, PayloadChoises, PayloadQuestion } from "@/types/reducerType";
+import { PayloadAction, PayloadChoises, PayloadQuestion, PayloadMacth } from "@/types/reducerType";
 const TestContext = createContext<TestContextType >(emptyTestContext)
 export function useTestContext (){
     return useContext(TestContext)
@@ -23,9 +23,17 @@ export const TestProvider=({children}:{ children:ReactNode})=>{
     const setResponseOfQuestion =(payload:PayloadAction  & {data: PayloadQuestion})=>{
         dispatch({type: "question-update-response", payload})
     }
+    const selectMatchColumnA =(payload:PayloadAction  & {data: PayloadMacth})=>{
+        dispatch({type: "match-select-choise-columnA", payload})
+    }
+    const selectMatchColumnB =(payload:PayloadAction  & {data: PayloadMacth})=>{
+        dispatch({type: "match-selec-choise-columnB", payload})
+    }
     const actions ={
         selectChoise,
-        setResponseOfQuestion
+        setResponseOfQuestion,
+        selectMatchColumnA,
+        selectMatchColumnB
     }
     return <TestContext.Provider 
         value={

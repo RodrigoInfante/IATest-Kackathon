@@ -25,19 +25,24 @@ export function addPropsClientUi(tests: TestList): TestWithSelect[]{
                 response: ""
             },
             
-            match: test.match.map((item)=>{
-                return {
-                    columnA:{
-                        content: item.columnA,
-                        selected:false
-                    },
-                    columnB:{
-                        content: item.columnB,
-                        selected:false
-                    },
-                    correct: null 
-                } 
-            })
+            match: {
+                items:test.match.map((item)=>{
+                    return {
+                        columnA:{
+                            content: item.columnA,
+                            selected:false,
+                            play: null
+                        },
+                        columnB:{
+                            content: item.columnB,
+                            selected:false,
+                            play: null
+                        },
+                        correct: null ,
+                    } 
+                }),
+                currentPlay: 1
+            }
         }
     }) 
 }

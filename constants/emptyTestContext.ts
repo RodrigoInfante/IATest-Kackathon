@@ -5,19 +5,25 @@ export const emptyTestContext: TestContextType ={
         about: "",
         choises: [{correct:false, text:"", selected: false}],
         complete: [{response:"",sentence:""}],
-        match:[
-            {
-                columnA:{
-                    content:"",
-                    selected: false
-                },
-                columnB:{
-                    content:"",
-                    selected: false
-                },
-                correct: null
-                
-            }],
+        match:{
+            items:[
+                {
+                    columnA:{
+                        content:"",
+                        selected: false,
+                        play:null
+                    },
+                    columnB:{
+                        content:"",
+                        selected: false,
+                        play:null
+                    },
+                    correct: null,
+                    
+                }
+            ],
+            currentPlay: 1
+        },
         question:{response:"",sentence:""}
     }],
     setTests: (tests: TestWithSelect[])=>tests ,
@@ -27,6 +33,8 @@ export const emptyTestContext: TestContextType ={
     setApiKey: (apikey:string)=>{},
     actions: {
         selectChoise(payload) {},
-        setResponseOfQuestion(payload) {}
+        setResponseOfQuestion(payload) {},
+        selectMatchColumnA(payload) {},
+        selectMatchColumnB(payload) {}
     }
 }

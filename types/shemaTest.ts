@@ -30,9 +30,10 @@ export type TestRequestError={
 export type Match ={
     columnA:MathItem,
     columnB:MathItem,
-    correct: boolean | null
+    correct: boolean | null,
 }
 export type MathItem={
     content:string, 
-    selected: boolean
+    selected: boolean,
+    play:number | null
 }

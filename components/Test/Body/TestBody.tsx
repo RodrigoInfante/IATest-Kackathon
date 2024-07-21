@@ -27,6 +27,10 @@ export const TestBody = ({test,validate,indexTest ,typeTest}:Props)=>{
     function updateComplete(response: string , indexComplete: number){
 
     }
+    function updateMatch(index: number, columnA: boolean){
+        if(columnA)return actions.selectMatchColumnA({currentIndexTest:indexTest, data:{index}})
+        return actions.selectMatchColumnB({currentIndexTest:indexTest, data:{index}})
+    }
 
     return (
         <div className="flex flex-col gap-3 px-5 py-3  h-[420px] lg:h-[380px] overflow-y-auto scrollbar-custom pt-5">
@@ -38,7 +42,8 @@ export const TestBody = ({test,validate,indexTest ,typeTest}:Props)=>{
                 )
             })}
             {typeTest===TypeTest.MACTH && <TestMatch
-                matchs={match}
+                matchs={match.items}
+                handlerChange={updateMatch}
             />}
             {typeTest===TypeTest.COMPLETE && <TestComplete complete={complete} onHandlerChange={updateComplete} />}
             {typeTest===TypeTest.QUESTION && <TestQuestion onHandlerChange={updateQuestion} response={question.response} question={question.sentence}/>}
