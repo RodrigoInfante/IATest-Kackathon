@@ -12,7 +12,7 @@ export class AIApiModule {
 						correct: z.boolean()
 					})),
 					question: z.string(),
-					macth: z.array(z.object({
+					match: z.array(z.object({
 						columnA: z.string(),
 						columnB: z.string()
 					})),
@@ -40,7 +40,7 @@ export class AIApiModule {
 						-No se pueden estar relacionadas propiedades de objetos distintos
 						-Al menos 4 objetos
 					*En complete sera un array de oraciones:
-						-Cada oración tendrá una palabra q se sustituirá por las etiquetas <complete><complete>
+						-Cada oración tendrá una palabra q se sustituirá por las etiquetas <complete></complete>
 						-Con el objetivo q el usuario pueda completar dicha oracion    
 						-Al menos 5 oraciones
 					
