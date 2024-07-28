@@ -1,4 +1,3 @@
-import { Choise } from "@/types/shemaTest"
 import { TestBodyAbout } from "./TestBodyAbout"
 import { TestChoise } from "./TestChoise"
 import { TestWithSelect } from "@/types/contextTypes"
@@ -25,7 +24,7 @@ export const TestBody = ({test,validate,indexTest ,typeTest}:Props)=>{
     }
     
     function updateComplete(response: string , indexComplete: number){
-
+        actions.setResponseComplete({currentIndexTest: indexTest,data:{index:indexComplete,response}})
     }
     function updateMatch(index: number, columnA: boolean){
         if(columnA)return actions.selectMatchColumnA({currentIndexTest:indexTest, data:{index}})
@@ -36,15 +35,8 @@ export const TestBody = ({test,validate,indexTest ,typeTest}:Props)=>{
         <div className="flex flex-col gap-3 px-5 py-3  h-[420px] lg:h-[380px] overflow-y-auto scrollbar-custom pt-5">
             <TestBodyAbout>{about}</TestBodyAbout>
             
-            {typeTest===TypeTest.CHOISE && choises.map((choise, index)=>{
-                return(
-                    <TestChoise onToggleChoise={()=> updateChoise({indexChoise:index})} key={index} choise={choise as Choise & {selected: boolean}} revelate={validate}></TestChoise>
-                )
-            })}
-            {typeTest===TypeTest.MACTH && <TestMatch
-                matchs={match.items}
-                handlerChange={updateMatch}
-            />}
+            {typeTest===TypeTest.CHOISE && <TestChoise choises={choises} onToggleChoise={updateChoise} revelate={validate}/>}
+            {typeTest===TypeTest.MACTH && <TestMatch indexTest={indexTest} matchs={match.items} revelate={match.revelate} handlerChange={updateMatch}/>}
             {typeTest===TypeTest.COMPLETE && <TestComplete complete={complete} onHandlerChange={updateComplete} />}
             {typeTest===TypeTest.QUESTION && <TestQuestion onHandlerChange={updateQuestion} response={question.response} question={question.sentence}/>}
 

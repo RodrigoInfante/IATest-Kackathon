@@ -9,7 +9,7 @@ export function addPropsClientUi(tests: TestList): TestWithSelect[]{
             choises: test.choises.map((choise)=>{
                 return {
                     ...choise,
-                    selected: false
+                    selected: false,
                 }
             }),
             
@@ -22,7 +22,8 @@ export function addPropsClientUi(tests: TestList): TestWithSelect[]{
             
             question:{
                 sentence: test.question,
-                response: ""
+                response: "",
+                revelate: false
             },
             
             match: {
@@ -41,7 +42,8 @@ export function addPropsClientUi(tests: TestList): TestWithSelect[]{
                         correct: null ,
                     } 
                 }),
-                currentPlay: 1
+                currentPlay: 1,
+                revelate:false
             }
         }
     }) 

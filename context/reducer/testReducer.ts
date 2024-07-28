@@ -1,6 +1,6 @@
 import {  TestWithSelect} from "@/types/contextTypes";
-import { ActionsChoisesReducer, ActionsQuestionReducer, ActionsReducer, ActionsMacthReducer } from "@/types/reducerType";
-import { questionAction,choisesActions,matchAction } from "../actions";
+import { ActionsChoisesReducer, ActionsQuestionReducer, ActionsReducer, ActionsMacthReducer, ActionsCompleteReducer,ActionsToogleRevelateReducer } from "@/types/reducerType";
+import { questionAction,choisesActions,matchAction, completeActions,toogleRevelateActions } from "../actions";
 import { ActionRoutes } from "@/types/reducerType";
 type State = TestWithSelect[]
 
@@ -43,6 +43,25 @@ export function testReducer(state :State, action :ActionsReducer): State{
                 ...test,
                 match: matchAction(test.match, action as ActionsMacthReducer)
             }
+        })
+        return newState
+    }
+    if(action.type.startsWith(ActionRoutes.COMPLETE)){
+        const newState = state.map((test, index)=>{
+            if(index !== currentIndexTest)return test
+            
+            return{
+                ...test,
+                complete: completeActions(test.complete, action as ActionsCompleteReducer)
+            }
+        })
+        return newState
+    }
+    if(action.type.startsWith(ActionRoutes.TOGGLEREVELATE)){
+        const newState = state.map((test, index)=>{
+            if(index !== currentIndexTest)return test
+
+            return toogleRevelateActions(test, action as ActionsToogleRevelateReducer)
         })
         return newState
     }

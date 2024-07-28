@@ -13,11 +13,16 @@ export type TestWithSelect =Omit<Test, "choises" | "question" | "complete" | "ma
     choises: Choise[],
     question:Question,
     complete:Complete,
-    match: {items:Match[], currentPlay: number}
+    match: {
+        items:Match[], 
+        currentPlay: number,
+        revelate: boolean
+    }
 }
 export type Question =  {
     sentence: string,
-    response:string
+    response:string,
+    revelate: boolean
 }
 export type Complete ={
     sentence:string,

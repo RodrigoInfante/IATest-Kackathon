@@ -3,7 +3,7 @@ import { TestContextType } from "@/types/contextTypes";
 export const emptyTestContext: TestContextType ={
     tests:[{
         about: "",
-        choises: [{correct:false, text:"", selected: false}],
+        choises: [{correct:false, text:"", selected: false }],
         complete: [{response:"",sentence:""}],
         match:{
             items:[
@@ -22,9 +22,10 @@ export const emptyTestContext: TestContextType ={
                     
                 }
             ],
-            currentPlay: 1
+            currentPlay: 1,
+            revelate: false
         },
-        question:{response:"",sentence:""}
+        question:{response:"",sentence:"", revelate: false}
     }],
     setTests: (tests: TestWithSelect[])=>tests ,
     content: "",
@@ -35,6 +36,7 @@ export const emptyTestContext: TestContextType ={
         selectChoise(payload) {},
         setResponseOfQuestion(payload) {},
         selectMatchColumnA(payload) {},
-        selectMatchColumnB(payload) {}
+        selectMatchColumnB(payload) {},
+        setResponseComplete(payload) {},
     }
 }

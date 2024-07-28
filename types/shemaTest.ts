@@ -14,6 +14,7 @@ export type Choise={
     text:string,
     correct:boolean,
     selected: boolean,
+
 }
 export type TestRequest ={
     ok: true,

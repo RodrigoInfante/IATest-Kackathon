@@ -1,13 +1,27 @@
 "use client"
-import { Choise } from "@/types/shemaTest"
+import type { Choise } from "@/types/shemaTest"
 import { CheckBoxChecked } from "@/components/Icon/CheckBox/CheckBoxChecked"
 import { CheckBoxEmpty } from "@/components/Icon/CheckBox/CheckBoxEmpty"
 type Props={
+    choises: Choise[],
+    onToggleChoise: ({indexChoise}:{indexChoise:number})=> void,
+    revelate: boolean
+}
+export function TestChoise({choises,onToggleChoise,revelate}:Props){
+    return(
+        <div>
+            <p>Selecciona las oraciones que consideres verdaderas :</p>
+            {choises.map((choise , ind)=><Choise key={ind} choise={choise} onToggleChoise={()=>onToggleChoise({indexChoise:ind})} revelate={revelate}/>)}
+        </div>
+    )
+}
+
+type ChoiseProps={
     revelate: boolean,
     choise: Choise & {selected: boolean},
     onToggleChoise: ()=> void
 }
-export function TestChoise({choise ,revelate,onToggleChoise}:Props) {
+export function Choise({choise ,revelate,onToggleChoise}:ChoiseProps) {
     const {correct,selected,text} = choise
     const styleRevelate={
         correct: "bg-green-400",

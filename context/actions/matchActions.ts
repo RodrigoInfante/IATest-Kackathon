@@ -1,6 +1,6 @@
 import { ActionsMacthReducer } from "@/types/reducerType";
 import { Match } from "@/types/shemaTest";
-type State ={items: Match[], currentPlay: number}
+type State ={items: Match[], currentPlay: number, revelate: boolean}
 export function matchAction (state : State, {type, payload :{ data:{ index: indexItem}}} : ActionsMacthReducer):State{
     const columnSelected= state.items.map((match, index)=>{
         if(match.columnB.selected)return {
@@ -85,7 +85,7 @@ export function matchAction (state : State, {type, payload :{ data:{ index: inde
                 
             })
             
-            return {items: updatedItems, currentPlay:nextPlay? state.currentPlay+1: state.currentPlay}
+            return {...state, items: updatedItems, currentPlay:nextPlay? state.currentPlay+1: state.currentPlay}
         
         case "match-selec-choise-columnB":
             let nextPlayB=false
@@ -155,7 +155,7 @@ export function matchAction (state : State, {type, payload :{ data:{ index: inde
                 
             })
             
-            return {items: updatedItemsB, currentPlay:nextPlayB? state.currentPlay+1: state.currentPlay}
+            return {...state, items: updatedItemsB, currentPlay:nextPlayB? state.currentPlay+1: state.currentPlay}
         default:
             return state
     }   

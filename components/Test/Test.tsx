@@ -10,7 +10,6 @@ import { useState } from "react"
 import { formatedPropTools } from "@/libs/formatedPropTools"
 import { Document } from "../Document/Document"
 import { Chat } from "../Chat/Chat"
-import { TypeTest } from "@/constants/typeTest"
 export const Test = () => {
 	const {tests, content, apikey}=useTestContext() 
 	const {
@@ -43,6 +42,8 @@ export const Test = () => {
 						lastTest={currentIndex===tests.length-1}
 						totalTests={tests.length}
 						validate={()=> setValidate(true)}
+						typeTest={typeTest}
+						currentTest={tests[currentIndex]}
 					/>
 				</div>
 				<Tools currentIndex={currentIndex} topics={formatedPropTools(tests)} toIndex={toIndex}/>

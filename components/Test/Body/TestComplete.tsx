@@ -17,7 +17,7 @@ export const TestComplete =({complete,onHandlerChange}:Props)=>{
                         <span>{beforeInput}</span>
                         <input 
                             name={`complete-${index}`} 
-                            className="bg-transparent border-0 border-b border-gray-400 focus:outline-none focus:border-white" 
+                            className="bg-transparent text-green-400 border-0 border-b border-gray-400 focus:outline-none focus:border-white" 
                             type="text" 
                             value={response}   
                             onChange={(e)=> onHandlerChange(e.target.value, index)} 

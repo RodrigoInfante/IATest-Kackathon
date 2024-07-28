@@ -9,7 +9,13 @@ export type ActionsInitReducer =
 export type ActionInitType = "init-state" 
 
 /*-----------------------Action Update Reducer--------------------- */
-export type ActionsUpdateReducer=ActionsQuestionReducer | ActionsMacthReducer | ActionsChoisesReducer
+export type ActionsUpdateReducer=
+    ActionsQuestionReducer | 
+    ActionsMacthReducer | 
+    ActionsChoisesReducer | 
+    ActionsCompleteReducer |
+    ActionsToogleRevelateReducer
+
 export type PayloadAction ={
     currentIndexTest: number,
 } 
@@ -57,18 +63,53 @@ export type PayloadChoises = {
     index: number
 }
 
+// Action Complete
+export type ActionsCompleteReducer =
+{
+    type: ActionCompleteType ,
+    payload: PayloadAction &{
+        data: PayloadComplete
+    }
+}
+
+export type ActionCompleteType = 
+    "complete-set-response" 
+export type PayloadComplete = {
+    index: number,
+    response: string
+}
+//Action ToggleRevelate
+export type ActionsToogleRevelateReducer =
+{
+    type: ActionToggleRevelateType ,
+    payload: PayloadAction &{
+        data: PayloadToggleRevelate
+    }
+}
+
+export type ActionToggleRevelateType = 
+    "toggle-revelate-complete" |
+    "toggle-revelate-choises" |
+    "toggle-revelate-question" |
+    "toggle-revelate-match"
+export type PayloadToggleRevelate = {
+    revelate: boolean
+}
 
 export const enum ActionRoutes{
     QUESTION= "question",
     COMPLETE= "complete",
     MATCH= "match",
     CHOISES= "choises",
+    TOGGLEREVELATE="toggle",
     INIT="init"
 }
 export type Actions={
-    //choises
     selectChoise: (payload: PayloadAction & {data: PayloadChoises})=> void,
     setResponseOfQuestion:(payload: PayloadAction & {data: PayloadQuestion})=> void,
     selectMatchColumnA: (payload: PayloadAction & {data: PayloadMacth})=> void,
     selectMatchColumnB: (payload: PayloadAction & {data: PayloadMacth})=> void,
+    setResponseComplete: (payload: PayloadAction & {data: PayloadComplete})=> void,
+    toggleRevelateMacth:(payload: PayloadAction & {data: PayloadToggleRevelate})=>void
+    toggleRevelateQuestion:(payload: PayloadAction & {data: PayloadToggleRevelate})=>void
 }
