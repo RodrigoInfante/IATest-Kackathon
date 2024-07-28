@@ -3,8 +3,14 @@ import { TestContextType } from "@/types/contextTypes";
 export const emptyTestContext: TestContextType ={
     tests:[{
         about: "",
-        choises: [{correct:false, text:"", selected: false }],
-        complete: [{response:"",sentence:""}],
+        choises:{
+            items: [{correct:false, text:"", selected: false }],
+            revelate: false
+        },
+        complete:{
+            items: [{response:"",sentence:""}],
+            revelate: false
+        },
         match:{
             items:[
                 {
@@ -38,5 +44,9 @@ export const emptyTestContext: TestContextType ={
         selectMatchColumnA(payload) {},
         selectMatchColumnB(payload) {},
         setResponseComplete(payload) {},
+        toggleRevelateChoises(payload) {},
+        toggleRevelateComplete(payload) {},
+        toggleRevelateMacth(payload) {},
+        toggleRevelateQuestion(payload) {}
     }
 }
