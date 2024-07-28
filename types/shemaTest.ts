@@ -2,7 +2,10 @@ export type TestList=Test[]
 
 export type Test={
     about:string,
-    choises: Choise[],
+    choises: {
+        text:string,
+        correct:boolean
+    }[],
     question: string,
     match: {
         columnA:string, 
@@ -11,10 +14,12 @@ export type Test={
     complete: string[]
 }
 export type Choise={
-    text:string,
+    items:{
+        text:string,
     correct:boolean,
     selected: boolean,
-
+    }[],
+    revelate: boolean
 }
 export type TestRequest ={
     ok: true,

@@ -29,7 +29,10 @@ export function testReducer(state :State, action :ActionsReducer): State{
             
             return{
                 ...test,
-                choises: choisesActions(test.choises, action as ActionsChoisesReducer)
+                choises: {
+                    ...test.choises,
+                    items: choisesActions(test.choises.items, action as ActionsChoisesReducer)
+                }
             }
         })
         return newState
@@ -52,7 +55,10 @@ export function testReducer(state :State, action :ActionsReducer): State{
             
             return{
                 ...test,
-                complete: completeActions(test.complete, action as ActionsCompleteReducer)
+                complete: {
+                    ...test.complete,
+                    items:completeActions(test.complete.items, action as ActionsCompleteReducer)
+                }
             }
         })
         return newState

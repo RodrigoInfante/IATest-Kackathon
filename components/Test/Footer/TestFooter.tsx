@@ -17,6 +17,16 @@ export const TestFooter =({currentIndex, lastTest ,totalTests,validate,typeTest,
         if(typeTest === TypeTest.MACTH){
             actions.toggleRevelateMacth({currentIndexTest: currentIndex, data:{revelate: !currentTest.match.revelate}})
         }
+        if(typeTest === TypeTest.CHOISE){
+            actions.toggleRevelateChoises({currentIndexTest: currentIndex, data:{revelate: !currentTest.choises.revelate}})
+        }
+        if(typeTest === TypeTest.COMPLETE){
+            actions.toggleRevelateComplete({currentIndexTest: currentIndex, data:{revelate: !currentTest.complete.revelate}})
+        }
+        if(typeTest === TypeTest.QUESTION){
+            actions.toggleRevelateQuestion({currentIndexTest: currentIndex, data:{revelate: !currentTest.question.revelate}})
+        }
+        
     }
     return(
         <footer className="flex justify-between py-3 px-4 items-center">

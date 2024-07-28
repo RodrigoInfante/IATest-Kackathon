@@ -39,6 +39,12 @@ export const TestProvider=({children}:{ children:ReactNode})=>{
     const toggleRevelateQuestion =(payload:PayloadAction & {data: PayloadToggleRevelate})=>{
         dispatch({type: "toggle-revelate-question", payload})
     }
+    const toggleRevelateChoises =(payload:PayloadAction & {data: PayloadToggleRevelate})=>{
+        dispatch({type: "toggle-revelate-choises", payload})
+    }
+    const toggleRevelateComplete =(payload:PayloadAction & {data: PayloadToggleRevelate})=>{
+        dispatch({type: "toggle-revelate-complete", payload})
+    }
     const actions:Actions ={
         selectChoise,
         setResponseOfQuestion,
@@ -46,7 +52,9 @@ export const TestProvider=({children}:{ children:ReactNode})=>{
         selectMatchColumnB,
         setResponseComplete,
         toggleRevelateMacth,
-        toggleRevelateQuestion
+        toggleRevelateQuestion,
+        toggleRevelateChoises,
+        toggleRevelateComplete
     }
     return <TestContext.Provider 
         value={

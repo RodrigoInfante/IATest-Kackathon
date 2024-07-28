@@ -110,6 +110,9 @@ export type Actions={
     selectMatchColumnA: (payload: PayloadAction & {data: PayloadMacth})=> void,
     selectMatchColumnB: (payload: PayloadAction & {data: PayloadMacth})=> void,
     setResponseComplete: (payload: PayloadAction & {data: PayloadComplete})=> void,
-    toggleRevelateMacth:(payload: PayloadAction & {data: PayloadToggleRevelate})=>void
-    toggleRevelateQuestion:(payload: PayloadAction & {data: PayloadToggleRevelate})=>void
+    toggleRevelateMacth:(payload: PayloadAction & {data: PayloadToggleRevelate})=>void,
+    toggleRevelateQuestion:(payload: PayloadAction & {data: PayloadToggleRevelate})=>void,
+    toggleRevelateChoises:(payload: PayloadAction & {data: PayloadToggleRevelate})=>void,
+    toggleRevelateComplete:(payload: PayloadAction & {data: PayloadToggleRevelate})=>void,
+    
 }

@@ -10,9 +10,12 @@ export type TestContextType ={
     actions: Actions
 }
 export type TestWithSelect =Omit<Test, "choises" | "question" | "complete" | "match"> & {
-    choises: Choise[],
+    choises: Choise,
     question:Question,
-    complete:Complete,
+    complete:{
+        items:Complete,
+        revelate: boolean
+    },
     match: {
         items:Match[], 
         currentPlay: number,

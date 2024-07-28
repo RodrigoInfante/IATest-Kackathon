@@ -1,7 +1,11 @@
 import { Choise } from "@/types/shemaTest";
 import { ActionsChoisesReducer} from "@/types/reducerType";
 
-type State = Choise[]
+type State = {
+        text:string,
+    correct:boolean,
+    selected: boolean,
+    }[]
 export function choisesActions (state : State, {type, payload :{ data}} : ActionsChoisesReducer):State{
     
     switch(type){

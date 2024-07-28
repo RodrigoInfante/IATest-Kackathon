@@ -6,19 +6,27 @@ export function addPropsClientUi(tests: TestList): TestWithSelect[]{
         return {
             about:test.about, 
             
-            choises: test.choises.map((choise)=>{
-                return {
-                    ...choise,
-                    selected: false,
-                }
-            }),
+            choises:{
+                items:test.choises.map((choise)=>{
+                    return {
+                        ...choise,
+                        selected: false,
+                        
+                    }
+                }),
+                revelate: false
+            } ,
             
-            complete: test.complete.map((complete)=>{
-                return{
-                    sentence: complete,
-                    response: ""
-                }
-            }),
+            complete: {
+                items:test.complete.map((complete)=>{
+                    return{
+                        sentence: complete,
+                        response: ""
+                    }
+                })
+                ,
+                revelate: false
+            },
             
             question:{
                 sentence: test.question,

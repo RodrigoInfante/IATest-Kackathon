@@ -4,6 +4,7 @@ type State= TestWithSelect
 export function toogleRevelateActions(state:State, {type, payload}: ActionsToogleRevelateReducer): State{
     const {data}=payload
     const {revelate}=data
+    console.log(revelate, "desde action")
     switch(type){
         case "toggle-revelate-match":
         console.log(true, "desde action", revelate)    
@@ -19,6 +20,22 @@ export function toogleRevelateActions(state:State, {type, payload}: ActionsToogl
                 ...state,
                 question:{
                     ...state.question,
+                    revelate
+                }
+            }
+        case "toggle-revelate-choises":
+            return{
+                ...state,
+                choises:{
+                    ...state.choises,
+                    revelate
+                }
+            }
+        case "toggle-revelate-complete":
+            return{
+                ...state,
+                complete:{
+                    ...state.complete,
                     revelate
                 }
             }

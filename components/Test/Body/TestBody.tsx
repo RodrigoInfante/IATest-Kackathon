@@ -35,9 +35,9 @@ export const TestBody = ({test,validate,indexTest ,typeTest}:Props)=>{
         <div className="flex flex-col gap-3 px-5 py-3  h-[420px] lg:h-[380px] overflow-y-auto scrollbar-custom pt-5">
             <TestBodyAbout>{about}</TestBodyAbout>
             
-            {typeTest===TypeTest.CHOISE && <TestChoise choises={choises} onToggleChoise={updateChoise} revelate={validate}/>}
+            {typeTest===TypeTest.CHOISE && <TestChoise choises={choises.items} onToggleChoise={updateChoise} revelate={choises.revelate} validate={validate}/>}
             {typeTest===TypeTest.MACTH && <TestMatch indexTest={indexTest} matchs={match.items} revelate={match.revelate} handlerChange={updateMatch}/>}
-            {typeTest===TypeTest.COMPLETE && <TestComplete complete={complete} onHandlerChange={updateComplete} />}
+            {typeTest===TypeTest.COMPLETE && <TestComplete complete={complete.items} onHandlerChange={updateComplete} />}
             {typeTest===TypeTest.QUESTION && <TestQuestion onHandlerChange={updateQuestion} response={question.response} question={question.sentence}/>}
 
         </div>
