@@ -3,4 +3,5 @@ export enum TypeTest{
     QUESTION="Responde la pregunta",
     MACTH= "Enlazar",
     COMPLETE= "Completar",
+    RESULTS= "Resultados"
 }
