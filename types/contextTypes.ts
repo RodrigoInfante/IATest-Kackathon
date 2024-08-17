@@ -1,5 +1,6 @@
 import { Test, Choise ,Match} from "./shemaTest"
 import { Actions } from "./reducerType"
+
 export type TestContextType ={
     tests: TestWithSelect[],
     setTests: (tests:TestWithSelect[])=> void,
@@ -9,6 +10,7 @@ export type TestContextType ={
     setApiKey:(apikey:string)=> void,
     actions: Actions
 }
+
 export type TestWithSelect =Omit<Test, "choises" | "question" | "complete" | "match"> & {
     choises: Choise,
     question:Question,
@@ -22,6 +24,7 @@ export type TestWithSelect =Omit<Test, "choises" | "question" | "complete" | "ma
         revelate: boolean
     }
 }
+
 export type Question =  {
     sentence: string,
     response:string,
@@ -29,6 +32,7 @@ export type Question =  {
     correct: boolean,
     checkResponse: string
 }
+
 export type Complete ={
     sentence:string,
     response:string,

@@ -48,6 +48,7 @@ export const emptyTestContext: TestContextType ={
         toggleRevelateComplete(payload) {},
         toggleRevelateMacth(payload) {},
         toggleRevelateQuestion(payload) {},
-        checkQuestionResponse(payload) {}
+        checkQuestionResponse(payload) {},
+        checkCompleteResponse(payload) {},
     }
 }
