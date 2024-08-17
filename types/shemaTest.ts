@@ -1,3 +1,5 @@
+import { Complete, Question } from "./contextTypes"
+
 export type TestList=Test[]
 
 export type Test={
@@ -13,6 +15,7 @@ export type Test={
     }[],
     complete: string[]
 }
+
 export type Choise={
     items:{
         text:string,
@@ -21,6 +24,7 @@ export type Choise={
     }[],
     revelate: boolean
 }
+
 export type TestRequest ={
     ok: true,
     schema: {
@@ -29,17 +33,38 @@ export type TestRequest ={
         }
     }, content:"string"
 }
+
 export type TestRequestError={
     ok: false,
     error: string
 }
+
 export type Match ={
     columnA:MathItem,
     columnB:MathItem,
     correct: boolean | null,
 }
+
 export type MathItem={
     content:string, 
     selected: boolean,
     play:number | null
+}
+
+export type CheckQuestionRequest ={
+    ok: true,
+    schema: {
+        object:{
+            question: Question
+        }
+    }
+}
+
+export type CheckCompleteRequest ={
+    ok: true,
+    schema: {
+        object:{
+            complete: Complete
+        }
+    }
 }

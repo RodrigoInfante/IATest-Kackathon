@@ -25,10 +25,14 @@ export type TestWithSelect =Omit<Test, "choises" | "question" | "complete" | "ma
 export type Question =  {
     sentence: string,
     response:string,
-    revelate: boolean
+    revelate: boolean,
+    correct: boolean,
+    checkResponse: string
 }
 export type Complete ={
     sentence:string,
-    response:string
+    response:string,
+    correct: boolean,
+    checkResponse: string
 }[]
 

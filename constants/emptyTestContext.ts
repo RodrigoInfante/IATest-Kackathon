@@ -8,7 +8,7 @@ export const emptyTestContext: TestContextType ={
             revelate: false
         },
         complete:{
-            items: [{response:"",sentence:""}],
+            items: [{response:"",sentence:"",correct: false, checkResponse: ""}],
             revelate: false
         },
         match:{
@@ -31,7 +31,7 @@ export const emptyTestContext: TestContextType ={
             currentPlay: 1,
             revelate: false
         },
-        question:{response:"",sentence:"", revelate: false}
+        question:{response:"",sentence:"", revelate: false, checkResponse: "",correct: false}
     }],
     setTests: (tests: TestWithSelect[])=>tests ,
     content: "",
@@ -47,6 +47,7 @@ export const emptyTestContext: TestContextType ={
         toggleRevelateChoises(payload) {},
         toggleRevelateComplete(payload) {},
         toggleRevelateMacth(payload) {},
-        toggleRevelateQuestion(payload) {}
+        toggleRevelateQuestion(payload) {},
+        checkQuestionResponse(payload) {}
     }
 }

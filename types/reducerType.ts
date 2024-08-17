@@ -1,4 +1,4 @@
-import { TestWithSelect } from "./contextTypes"
+import { Complete, Question, TestWithSelect } from "./contextTypes"
 export type ActionsReducer =ActionsInitReducer| ActionsUpdateReducer
 //Action INIT 
 export type ActionsInitReducer =
@@ -22,16 +22,23 @@ export type PayloadAction ={
 //Action of Question
 export type ActionsQuestionReducer = 
 {
-    type: ActionQuestionType ,
+    type: "question-update-response" ,
     payload: PayloadAction & {
-        data: PayloadQuestion
+        data: PayloadQuestionUpdateResponse 
+    }
+} |
+{
+    type: "question-check-response" ,
+    payload: PayloadAction & {
+        data: PayloadQuestionCheckResponse
     }
 }
-export type PayloadQuestion = {
+
+export type PayloadQuestionUpdateResponse = {
     response: string
 }
-
-export type ActionQuestionType = "question-update-response" 
+export type PayloadQuestionCheckResponse = Question
+export type ActionQuestionType = "question-update-response" | "question-check-response"
 
 //Action of Macth
 export type ActionsMacthReducer =
@@ -47,6 +54,7 @@ export type ActionMatchType =
     "match-selec-choise-columnB"
 
 export type PayloadMacth={index: number}
+
 //Action of Choises
 export type ActionsChoisesReducer =
 {
@@ -64,20 +72,31 @@ export type PayloadChoises = {
 }
 
 // Action Complete
+
 export type ActionsCompleteReducer =
 {
-    type: ActionCompleteType ,
-    payload: PayloadAction &{
-        data: PayloadComplete
+    type: "complete-set-response" ,
+    payload: PayloadAction & {
+        data: PayloadCompleteUpdateResponse
+    }
+} | 
+{
+    type: "complete-check-response" ,
+    payload: PayloadAction & {
+        data: PayloadCompleteCheckResponse
     }
 }
 
 export type ActionCompleteType = 
-    "complete-set-response" 
-export type PayloadComplete = {
+    "complete-set-response" | "complete-check-response"
+
+export type PayloadCompleteUpdateResponse = {
     index: number,
     response: string
-}
+} 
+
+export type PayloadCompleteCheckResponse = Complete
+
 //Action ToggleRevelate
 export type ActionsToogleRevelateReducer =
 {
@@ -104,15 +123,17 @@ export const enum ActionRoutes{
     TOGGLEREVELATE="toggle",
     INIT="init"
 }
+
 export type Actions={
     selectChoise: (payload: PayloadAction & {data: PayloadChoises})=> void,
-    setResponseOfQuestion:(payload: PayloadAction & {data: PayloadQuestion})=> void,
+    setResponseOfQuestion:(payload: PayloadAction & {data: PayloadQuestionUpdateResponse})=> void,
     selectMatchColumnA: (payload: PayloadAction & {data: PayloadMacth})=> void,
     selectMatchColumnB: (payload: PayloadAction & {data: PayloadMacth})=> void,
-    setResponseComplete: (payload: PayloadAction & {data: PayloadComplete})=> void,
+    setResponseComplete: (payload: PayloadAction & {data: PayloadCompleteUpdateResponse})=> void,
     toggleRevelateMacth:(payload: PayloadAction & {data: PayloadToggleRevelate})=>void,
     toggleRevelateQuestion:(payload: PayloadAction & {data: PayloadToggleRevelate})=>void,
     toggleRevelateChoises:(payload: PayloadAction & {data: PayloadToggleRevelate})=>void,
     toggleRevelateComplete:(payload: PayloadAction & {data: PayloadToggleRevelate})=>void,
-    
+    checkQuestionResponse : (payload: PayloadAction & {data: PayloadQuestionCheckResponse})=>void,
+    checkCompleteResponse : (payload: PayloadAction & {data: PayloadCompleteCheckResponse})=>void,
 }

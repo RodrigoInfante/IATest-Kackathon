@@ -1,5 +1,5 @@
-import { TestWithSelect } from "@/types/contextTypes"
-import { TestList,Match } from "@/types/shemaTest"
+import { Complete, TestWithSelect } from "@/types/contextTypes"
+import { TestList } from "@/types/shemaTest"
 
 export function addPropsClientUi(tests: TestList): TestWithSelect[]{
     return tests.map((test)=>{
@@ -21,7 +21,9 @@ export function addPropsClientUi(tests: TestList): TestWithSelect[]{
                 items:test.complete.map((complete)=>{
                     return{
                         sentence: complete,
-                        response: ""
+                        response: "",
+                        correct: false,
+                        checkResponse: ""
                     }
                 })
                 ,
@@ -31,7 +33,9 @@ export function addPropsClientUi(tests: TestList): TestWithSelect[]{
             question:{
                 sentence: test.question,
                 response: "",
-                revelate: false
+                revelate: false,
+                correct: false,
+                checkResponse: ""
             },
             
             match: {
@@ -55,4 +59,16 @@ export function addPropsClientUi(tests: TestList): TestWithSelect[]{
             }
         }
     }) 
+}
+
+export function completeResponseToIAModelFormatted(complete: Complete){
+    let stringFormatted: string= ''
+
+    complete.forEach((item)=>{
+        stringFormatted += `
+            {sentence: ${item.sentence}, response: ${item.response}}
+        `
+    })
+
+    return stringFormatted
 }

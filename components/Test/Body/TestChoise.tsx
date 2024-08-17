@@ -2,6 +2,7 @@
 import type { Choise } from "@/types/shemaTest"
 import { CheckBoxChecked } from "@/components/Icon/CheckBox/CheckBoxChecked"
 import { CheckBoxEmpty } from "@/components/Icon/CheckBox/CheckBoxEmpty"
+
 type Props={
     choises: {
         text:string,
@@ -12,8 +13,8 @@ type Props={
     revelate: boolean,
     validate: boolean
 }
+
 export function TestChoise({choises,onToggleChoise,revelate,validate}:Props){
-    console.log(revelate)
     return(
         <div className="flex flex-col gap-2">
             <p>Selecciona las oraciones que consideres verdaderas :</p>
@@ -31,12 +32,14 @@ type ChoiseProps={
     },
     onToggleChoise: ()=> void
 }
+
 export function Choise({choise ,revelate,onToggleChoise}:ChoiseProps) {
     const {correct,selected,text} = choise
     const styleRevelate={
         correct: "bg-green-400",
         incorrect: "bg-red-400",
     }
+    
     return(
         <span 
             className={`flex gap-3 p-1 cursor-pointer rounded-md 

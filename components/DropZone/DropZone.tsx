@@ -37,7 +37,6 @@ export const DropZone = () => {
 		setPlaceholder(placeholders.check)
 		const schemaTest = await TestModule.getShemaTest({ file: acceptedFiles[0] ,apikey: apikey})
 		const searchParams= new URLSearchParams()
-		console.log(schemaTest)
 		if (!schemaTest.ok) {
 			setPlaceholder(placeholders.badRequest(schemaTest.error))
 			acceptedFiles.pop()

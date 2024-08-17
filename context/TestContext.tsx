@@ -3,8 +3,8 @@ import { createContext , ReactNode, useContext, useState, useReducer} from "reac
 import { TestContextType, TestWithSelect } from "@/types/contextTypes";
 import { emptyTestContext } from "@/constants/emptyTestContext";
 import { testReducer } from "./reducer/testReducer";
-import { Actions } from "@/types/reducerType";
-import { PayloadAction, PayloadChoises, PayloadQuestion, PayloadMacth,PayloadComplete, PayloadToggleRevelate } from "@/types/reducerType";
+import { Actions, PayloadCompleteCheckResponse, PayloadCompleteUpdateResponse } from "@/types/reducerType";
+import { PayloadAction, PayloadChoises, PayloadQuestionUpdateResponse,PayloadQuestionCheckResponse, PayloadMacth, PayloadToggleRevelate } from "@/types/reducerType";
 const TestContext = createContext<TestContextType >(emptyTestContext)
 export function useTestContext (){
     return useContext(TestContext)
@@ -21,7 +21,7 @@ export const TestProvider=({children}:{ children:ReactNode})=>{
     const selectChoise =(payload:PayloadAction  & {data: PayloadChoises})=>{
         dispatch({type: "choises-select-choise", payload})
     }
-    const setResponseOfQuestion =(payload:PayloadAction  & {data: PayloadQuestion})=>{
+    const setResponseOfQuestion =(payload:PayloadAction  & {data: PayloadQuestionUpdateResponse})=>{
         dispatch({type: "question-update-response", payload})
     }
     const selectMatchColumnA =(payload:PayloadAction  & {data: PayloadMacth})=>{
@@ -30,7 +30,7 @@ export const TestProvider=({children}:{ children:ReactNode})=>{
     const selectMatchColumnB =(payload:PayloadAction  & {data: PayloadMacth})=>{
         dispatch({type: "match-selec-choise-columnB", payload})
     }
-    const setResponseComplete = (payload: PayloadAction & {data: PayloadComplete})=>{
+    const setResponseComplete = (payload: PayloadAction & {data: PayloadCompleteUpdateResponse})=>{
         dispatch({type: "complete-set-response", payload})
     }
     const toggleRevelateMacth =(payload:PayloadAction & {data: PayloadToggleRevelate})=>{
@@ -45,6 +45,13 @@ export const TestProvider=({children}:{ children:ReactNode})=>{
     const toggleRevelateComplete =(payload:PayloadAction & {data: PayloadToggleRevelate})=>{
         dispatch({type: "toggle-revelate-complete", payload})
     }
+    const checkQuestionResponse = (payload:PayloadAction & {data: PayloadQuestionCheckResponse})=>{
+        dispatch({type: "question-check-response", payload})
+    }
+
+    const checkCompleteResponse = (payload:PayloadAction & {data: PayloadCompleteCheckResponse})=>{
+        dispatch({type: "complete-check-response", payload})
+    }
     const actions:Actions ={
         selectChoise,
         setResponseOfQuestion,
@@ -54,7 +61,9 @@ export const TestProvider=({children}:{ children:ReactNode})=>{
         toggleRevelateMacth,
         toggleRevelateQuestion,
         toggleRevelateChoises,
-        toggleRevelateComplete
+        toggleRevelateComplete,
+        checkQuestionResponse,
+        checkCompleteResponse
     }
     return <TestContext.Provider 
         value={

@@ -22,6 +22,7 @@ export function testReducer(state :State, action :ActionsReducer): State{
         
         return newState
     }
+    
     if(action.type.startsWith(ActionRoutes.CHOISES)){
 
         const newState = state.map((test, index)=>{
@@ -37,6 +38,7 @@ export function testReducer(state :State, action :ActionsReducer): State{
         })
         return newState
     }
+
     if(action.type.startsWith(ActionRoutes.MATCH)){
 
         const newState = state.map((test, index)=>{
@@ -49,6 +51,7 @@ export function testReducer(state :State, action :ActionsReducer): State{
         })
         return newState
     }
+
     if(action.type.startsWith(ActionRoutes.COMPLETE)){
         const newState = state.map((test, index)=>{
             if(index !== currentIndexTest)return test
@@ -63,6 +66,7 @@ export function testReducer(state :State, action :ActionsReducer): State{
         })
         return newState
     }
+
     if(action.type.startsWith(ActionRoutes.TOGGLEREVELATE)){
         const newState = state.map((test, index)=>{
             if(index !== currentIndexTest)return test
