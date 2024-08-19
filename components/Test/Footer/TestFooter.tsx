@@ -71,11 +71,11 @@ export const TestFooter =({currentIndex, lastTest ,totalTests,validate,typeTest,
         <footer className="flex justify-between py-3 px-4 items-center">
             <span className="text-gray-600">{currentIndex+1}/{totalTests}</span>
             <div className="flex gap-4">
-                <PrimaryButton onClick={handlerRevelate}>
-                    {checkingResponse?<Loader color="black"/>:"Revisar pregunta"}
+                <PrimaryButton disabled={typeTest=== TypeTest.RESULTS} onClick={handlerRevelate}>
+                    {checkingResponse?<Loader color="black"/>:"Mostrar Respuestas"}
                 </PrimaryButton>
 
-                <PrimaryButton disabled={!lastTest} onClick={validate}>Revisar Test Completo</PrimaryButton>
+                <PrimaryButton disabled={!lastTest} onClick={validate}>Revisar Test</PrimaryButton>
             </div>
             
         </footer>

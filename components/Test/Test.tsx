@@ -6,11 +6,12 @@ import { SelectMode } from "../Tools/SelectType"
 import { Tools } from "../Tools/Tools"
 import useTest from "@/hooks/useTest"
 import { useTestContext } from "@/context/TestContext"
-import { useState } from "react"
-import { formatedPropTools } from "@/libs/formatedPropTools"
+import { useState, useEffect } from "react"
+import { formatedPropTools } from "@/lib/formatedPropTools"
 import { Document } from "../Document/Document"
 import { Chat } from "../Chat/Chat"
 import { DashboardResults } from "../DashboardResults/DashboardResults"
+import { TypeTest } from "@/constants/typeTest"
 
 export const Test = () => {
 	const {tests, content, apikey} = useTestContext() 
@@ -37,15 +38,27 @@ export const Test = () => {
 		setShowDashboardResults(true)
 	}
 
+	const returnTests = ()=> {
+		setShowDashboardResults(false)
+		changeType(TypeTest.CHOISE)
+		toIndex(0)
+	}
+
+	useEffect(() => {
+		typeTest === TypeTest.RESULTS? onShowAllResults(): setShowDashboardResults(false)
+	},[typeTest])
+
 	return (
 		<div className="flex flex-col gap-1">
 			<div className="relative flex h-[500px] bg-gray-950">
-				<SelectMode currentType={typeTest} selectType={changeType} types={typeTestList} allResults={allResults}></SelectMode>
-
+				<span className="hidden lg:block">
+					<SelectMode currentType={typeTest} selectType={changeType} types={typeTestList} allResults={allResults}></SelectMode>
+				</span>
+				
 				<div className="relative z-20 flex flex-col w-full shadow shadow-black bg-gray-900 lg:w-[60%] drop-shadow-2xl   border-gray-300 ">
 					
 					{showDashboardResults? 
-						<DashboardResults/> 
+						<DashboardResults returnTest={returnTests}/> 
 						:
 						<>
 							<TestHeader 
@@ -56,29 +69,30 @@ export const Test = () => {
 							/>
 
 							<TestBody typeTest={typeTest} indexTest={currentIndex} test={tests[currentIndex]} validate={validate}/>
-
+							
+							<TestFooter
+								currentIndex={currentIndex}
+								lastTest={currentIndex===tests.length-1}
+								totalTests={tests.length}
+								validate={() => changeType(TypeTest.RESULTS)}
+								typeTest={typeTest}
+								currentTest={tests[currentIndex]}
+							/>
 						</>
 					}
 					
-					<TestFooter
-						currentIndex={currentIndex}
-						lastTest={currentIndex===tests.length-1}
-						totalTests={tests.length}
-						validate={onShowAllResults}
-						typeTest={typeTest}
-						currentTest={tests[currentIndex]}
-					/>
-					
 				</div>
+					<span className="hidden lg:block">
+					<Tools currentIndex={currentIndex} topics={formatedPropTools(tests)} toIndex={toIndex}/>
 
-				<Tools currentIndex={currentIndex} topics={formatedPropTools(tests)} toIndex={toIndex}/>
+					</span>
 			</div>
 			
-			<div className="flex">
+			{/* <div className="flex">
 				<Document content={content}></Document> 
 
 				<Chat content={content} apikey={apikey}></Chat>
-			</div>
+			</div> */}
 		</div>
 		
 		

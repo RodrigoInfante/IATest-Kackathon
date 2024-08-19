@@ -36,7 +36,7 @@ export const TestBody = ({test,validate,indexTest ,typeTest}:Props)=>{
     }
 
     return (
-        <div className="flex flex-col gap-3 px-5 py-3  h-[420px] lg:h-[380px] overflow-y-auto scrollbar-custom pt-5">
+        <div className="flex flex-col gap-3 px-5 py-3  h-[420px] lg:h-[380px] overflow-y-auto pt-5">
             <TestBodyAbout>{about}</TestBodyAbout>
             
             {typeTest===TypeTest.CHOISE && <TestChoise choises={choises.items} onToggleChoise={updateChoise} revelate={choises.revelate} validate={validate}/>}

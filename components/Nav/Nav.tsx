@@ -24,11 +24,6 @@ export const Nav =()=>{
                 <PrimaryLink className="underline lg:decoration-transparent hover:lg:decoration-white" href="/">Home</PrimaryLink>
                 <LinkGitHub className="hidden lg:block"/>
             </div>
-            <div className="lg:absolute right-0 px-3 flex gap-2 content-end">
-                <Button className="hover:underline font-semibold lg:text-lg py-1 lg:py-2 px-2 lg:px-3" handlerClick={()=>{}}>Registrarse</Button>
-                <SecondaryButton handlerClick={()=>{}}>Iniciar Sesión</SecondaryButton>
-            </div>
-            
         </nav>
     )
 }

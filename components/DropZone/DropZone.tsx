@@ -12,7 +12,8 @@ import { useRouter } from "next/navigation"
 import { ApiKeyInput } from "../Inputs/ApiKeyInput"
 import { usePathname } from "next/navigation"
 import { useTestContext } from "@/context/TestContext"
-import { addPropsClientUi } from "@/libs/format"
+import { addPropsClientUi } from "@/lib/format"
+
 export const DropZone = () => {
 	const {push}=useRouter()
 	const path =usePathname()

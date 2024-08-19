@@ -9,7 +9,7 @@ export default function useTest(tests: TestWithSelect[]){
     const [currentTest, setTest]= useState(tests[indexTest])
     const [position, setPosition]= useState<-1| 0| 1>(-1)
 
-    const [typeTest, setTypeTest]=useState<TypeTest>(TypeTest.CHOISE)
+    const [typeTest, setTypeTest]=useState<TypeTest>(TypeTest.QUESTION)
     const typeTestList = useMemo(()=>(Object.values(TypeTest)),[])
 
     useEffect(()=>{
